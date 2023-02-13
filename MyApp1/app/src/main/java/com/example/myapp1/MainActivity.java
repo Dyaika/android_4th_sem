@@ -7,15 +7,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-
     private Toast toast;
+    private final static String TAG = "lifecycle";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         toast = Toast.makeText(this, "ON CREATE", Toast.LENGTH_SHORT);
         toast.show();
-        Log.d("lifecycle","ON CREATE");
+        Log.d(TAG,"ON CREATE");
     }
 
     @Override
@@ -24,7 +24,7 @@ public class MainActivity extends AppCompatActivity {
 
         toast = Toast.makeText(this, "ON START", Toast.LENGTH_SHORT);
         toast.show();
-        Log.d("lifecycle","ON START");
+        Log.d(TAG,"ON START");
     }
 
     @Override
@@ -32,7 +32,7 @@ public class MainActivity extends AppCompatActivity {
         super.onRestart();
         toast = Toast.makeText(this, "ON RESTART", Toast.LENGTH_SHORT);
         toast.show();
-        Log.w("lifecycle","ON RESTART");
+        Log.w(TAG,"ON RESTART");
     }
 
     @Override
@@ -41,7 +41,7 @@ public class MainActivity extends AppCompatActivity {
 
         toast = Toast.makeText(this, "ON RESUME", Toast.LENGTH_SHORT);
         toast.show();
-        Log.v("lifecycle","ON RESUME");
+        Log.v(TAG,"ON RESUME");
     }
 
     @Override
@@ -49,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         super.onPause();
         toast = Toast.makeText(this, "ON PAUSE", Toast.LENGTH_SHORT);
         toast.show();
-        Log.i("lifecycle","ON PAUSE");
+        Log.i(TAG,"ON PAUSE");
     }
 
     @Override
@@ -57,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         super.onStop();
         toast = Toast.makeText(this, "ON STOP", Toast.LENGTH_SHORT);
         toast.show();
-        Log.e("lifecycle","ON STOP");
+        Log.e(TAG,"ON STOP");
     }
 
     @Override
@@ -65,6 +65,6 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         toast = Toast.makeText(this, "ON DESTROY", Toast.LENGTH_SHORT);
         toast.show();
-        Log.wtf("lifecycle","ON DESTROY");
+        Log.wtf(TAG,"ON DESTROY");
     }
 }
