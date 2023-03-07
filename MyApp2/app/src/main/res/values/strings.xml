@@ -3,10 +3,10 @@
     <string name="act1_label">Отзывы</string>
     <string name="act1_hint">Текст вашего отзыва здесь</string>
     <string name="act1_button">Оставить отзыв</string>
-    <string name="act2_label">Отзывы</string>
+    <string name="act2_label">Ваш отзыв</string>
     <string name="act2_hint">Текст вашего отзыва здесь</string>
-    <string name="act2_button">Оставить отзыв</string>
-    <string name="act3_label">Отзывы</string>
-    <string name="act3_hint">Текст вашего отзыва здесь</string>
-    <string name="act3_button">Оставить отзыв</string>
+    <string name="act2_button">Просто тост</string>
+    <string name="act3_label">Fumo</string>
+    <string name="act3_hint">Fumo Zone</string>
+    <string name="act3_button">FumoFumo</string>
 </resources>
