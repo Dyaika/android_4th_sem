@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">MyApp2</string>
+    <string name="act1_label">Отзывы</string>
+    <string name="act1_hint">Текст вашего отзыва здесь</string>
+    <string name="act1_button">Оставить отзыв</string>
+    <string name="act2_label">Ваш отзыв</string>
+    <string name="act2_hint">Текст вашего отзыва здесь</string>
+    <string name="act2_button">Просто тост</string>
+    <string name="act3_label">Fumo</string>
+    <string name="act3_hint">Fumo Zone</string>
+    <string name="act3_button">FumoFumo</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
