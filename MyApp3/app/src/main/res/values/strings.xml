@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">MyApp2</string>
+    <string name="app_name">MyApp3</string>
     <string name="act1_label">Отзывы</string>
     <string name="act1_hint">Текст вашего отзыва здесь</string>
     <string name="act1_button">Оставить отзыв</string>
