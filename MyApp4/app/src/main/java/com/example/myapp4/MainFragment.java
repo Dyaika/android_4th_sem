@@ -43,7 +43,11 @@ public class MainFragment extends Fragment {
         recycBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast.makeText(getActivity(), "to recycler", Toast.LENGTH_SHORT).show();
+                Fragment recfrag = new RecyclerViewFragment();
+                getParentFragmentManager().beginTransaction()
+                        .replace(R.id.fragment_container_view, recfrag)
+                        .addToBackStack(null)
+                        .commit();
             }
         });
         return view;

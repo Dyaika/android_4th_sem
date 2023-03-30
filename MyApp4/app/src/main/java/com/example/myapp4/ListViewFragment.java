@@ -12,6 +12,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -35,7 +36,7 @@ import java.util.List;
 public class ListViewFragment extends Fragment {
 
 
-    private static final String TAG = "mainfragment";
+    private static final String TAG = "listfragment";
 
     public ListViewFragment() {
         // Required empty public constructor
@@ -61,7 +62,8 @@ public class ListViewFragment extends Fragment {
         itemsList.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Toast.makeText(getActivity(), "A", Toast.LENGTH_SHORT).show();
+                Toast.makeText(getActivity(), "" + l, Toast.LENGTH_SHORT).show();
+                Log.i(TAG, l + "");
             }
         });
         return view;
