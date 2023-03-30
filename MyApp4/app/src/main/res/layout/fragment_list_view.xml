@@ -5,7 +5,8 @@
     android:layout_height="match_parent"
     android:background="?attr/fullscreenBackgroundColor"
     android:theme="@style/ThemeOverlay.MyApp4.FullscreenContainer"
-    tools:context=".ListViewFragment">
+    tools:context=".ListViewFragment"
+    android:padding="16dp">
 
     <!-- The primary full-screen view. This can be replaced with whatever view
          is needed to present your content, e.g. VideoView, SurfaceView,
@@ -30,7 +31,9 @@
         <ListView
             android:id="@+id/itemsList"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:dividerHeight="8dp"
+            android:divider="#00FFFFFF">
 
         </ListView>
     </FrameLayout>

@@ -40,6 +40,8 @@ public class RecyclerViewFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_recycler_view, container, false);
         RecyclerView recyclerView = view.findViewById(R.id.itemsList);
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        int space = getResources().getDimensionPixelSize(R.dimen.spacing);
+        recyclerView.addItemDecoration(new SpaceItemDecoration(space));
         MyRecyclerAdapter adapter = new MyRecyclerAdapter(items);
         recyclerView.setAdapter(adapter);
         return view;
