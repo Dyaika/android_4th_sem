@@ -7,7 +7,17 @@
     android:orientation="vertical"
     tools:context=".SignupFragment"
     android:padding="16dp">
-
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="end">
+        <ImageView
+            android:id="@+id/close_img_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@android:drawable/ic_menu_close_clear_cancel" />
+    </LinearLayout>
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,6 +54,13 @@
             android:layout_height="wrap_content"
             android:text="Зарегистрироваться"
             android:padding="16dp"/>
+        <TextView
+            android:id="@+id/login_text_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:textAlignment="center"
+            android:padding="6dp"
+            android:text="Уже есть аккаунт? Войдите"/>
     </LinearLayout>
 
 

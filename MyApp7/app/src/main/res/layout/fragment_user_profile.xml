@@ -14,6 +14,13 @@
         android:layout_height="wrap_content"
         android:textAlignment="center"
         android:text="Профиль" />
+    <TextView
+        android:id="@+id/username_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:textSize="34sp"
+        android:text="Ну кринж какой то" />
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -27,32 +34,13 @@
             android:text="Коллекция"
             android:padding="16dp"/>
 
-        <LinearLayout
+        <Button
+            android:id="@+id/exit_button"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            app:layout_constraintTop_toBottomOf="@+id/collection_button">
+            android:text="Выйти"
+            android:padding="16dp"/>
 
-            <Button
-                android:id="@+id/signup_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Регистрация"
-                android:layout_weight="1"
-                android:layout_marginEnd="8dp"/>
-
-            <Button
-                android:id="@+id/login_button"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:padding="16dp"
-                android:text="Вход"
-                android:layout_weight="1"
-                android:layout_marginStart="8dp"/>
-
-        </LinearLayout>
     </LinearLayout>
 
 </LinearLayout>
