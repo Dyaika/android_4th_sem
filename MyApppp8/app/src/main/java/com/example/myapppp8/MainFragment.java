@@ -15,6 +15,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.nio.charset.StandardCharsets;
+import java.util.concurrent.atomic.AtomicReference;
+
 
 public class MainFragment extends Fragment {
 
@@ -80,8 +87,7 @@ public class MainFragment extends Fragment {
             Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
         });
         DB.setOnClickListener(view -> {
-            String text = getFromDatabase();
-            Toast.makeText(getContext(), text, Toast.LENGTH_SHORT).show();
+            getFromDatabase();
         });
     }
     private void saveText(String text){
@@ -90,18 +96,99 @@ public class MainFragment extends Fragment {
         editor = sharedPreferences.edit();
         editor.putString("text", text + "_SP");
         editor.apply();
+
+        File file = new File(getContext().getFilesDir(), "file.txt");
+        try {
+            FileOutputStream fout = new FileOutputStream(file);
+            fout.write((text + "_AS").getBytes());
+            fout.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
+        /*if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            // Разрешение уже предоставлено, выполните необходимые действия для чтения/записи во внешнее хранилище
+            File externalStorage = Environment.getExternalStorageDirectory();
+            file = new File(externalStorage, "file.txt");
+            try {
+                FileOutputStream fout = new FileOutputStream(file);
+                fout.write(text.getBytes());
+                fout.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        } else {
+            // Запрос разрешения у пользователя
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 1);
+        }*/
+
+
+        TextDataBase db = TextDataBase.getDatabase(getContext().getApplicationContext());
+        final TextDao textDao = db.textDao();
+        new Thread(() -> {
+            TextEntity textEntity = textDao.getText("text");
+            if (textEntity == null) {
+                textDao.saveText(new TextEntity("text", text + "_DB"));
+            } else {
+                TextEntity newTextEntity = new TextEntity("key", text+ "_DB");
+                newTextEntity.setId(textEntity.getId());
+                textDao.updateText(newTextEntity);
+            }
+        }).start();
+
     }
     private String getFromSharedPrefs(){
         return sharedPreferences.getString("text", "empty");
     }
     private String getFromAppSpec(){
-        return "AS";
+        File file = new File(getContext().getFilesDir(), "file.txt");
+        String text = "empty";
+        try {
+            FileInputStream fin = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fin.read(data);
+            fin.close();
+            text = new String(data, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return text;
     }
     private String getFromDevice(){
-        return "DE";
+        String text = "empty";
+        /*
+        if (ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) == PackageManager.PERMISSION_GRANTED) {
+            // Разрешение уже предоставлено, выполните необходимые действия для чтения/записи во внешнее хранилище
+        } else {
+            // Запрос разрешения у пользователя
+            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+        }
+        File externalStorage = Environment.getExternalStorageDirectory();
+        File file = new File(externalStorage, "file.txt");
+        try {
+            FileInputStream fin = new FileInputStream(file);
+            byte[] data = new byte[(int) file.length()];
+            fin.read(data);
+            fin.close();
+            text = new String(data, StandardCharsets.UTF_8);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }*/
+        return text;
     }
-    private String getFromDatabase(){
-        return "DB";
+    private void getFromDatabase(){
+        TextDataBase db = TextDataBase.getDatabase(getContext().getApplicationContext());
+        new Thread(() -> {
+            TextDao textDao = db.textDao();
+            TextEntity textEntity = textDao.getText("text");
+            if (textEntity != null) {
+                final String loadedText = textEntity.getText();
+                getActivity().runOnUiThread(() -> {
+                    Toast.makeText(getContext(), loadedText, Toast.LENGTH_SHORT).show();
+                });
+            }
+        }).start();
     }
 
 }
